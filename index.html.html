@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전도서 지혜 요약</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .serif {
+            font-family: 'Noto Serif KR', serif;
+        }
+        .summary-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header -->
+    <header class="hero-gradient text-white py-12 px-6 text-center shadow-lg">
+        <h1 class="serif text-4xl font-bold mb-4">전도서 (Ecclesiastes)</h1>
+        <p class="text-slate-300 text-lg max-w-2xl mx-auto italic">"헛되고 헛되며 헛되고 헛되니 모든 것이 헛되도다... 하나님을 경외하고 그의 명령들을 지킬지어다"</p>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-8">
+        
+        <!-- Today's Wisdom Section -->
+        <section class="mb-12">
+            <div class="bg-white rounded-2xl p-8 shadow-sm border-l-8 border-amber-500 relative overflow-hidden">
+                <i class="fas fa-quote-left absolute top-4 left-4 text-slate-100 text-6xl"></i>
+                <div class="relative z-10">
+                    <h2 class="text-amber-600 font-bold mb-2 uppercase tracking-wider">오늘의 지혜</h2>
+                    <p id="random-verse" class="serif text-2xl font-medium mb-4 leading-relaxed text-slate-700">"범사에 기한이 있고 천하 만사가 다 때가 있나니..."</p>
+                    <p id="random-ref" class="text-slate-500 font-semibold text-right">- 전도서 3:1</p>
+                    <button onclick="refreshVerse()" class="mt-4 px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm hover:bg-amber-200 transition-colors">
+                        <i class="fas fa-redo-alt mr-2"></i>다른 말씀 보기
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter Navigation -->
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold serif">장별 요약 (1~12장)</h2>
+            <span class="text-sm text-slate-400">전체 12개 장</span>
+        </div>
+
+        <!-- Summary Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="summary-container">
+            <!-- Content will be injected by JavaScript -->
+        </div>
+
+        <!-- Footer Info -->
+        <section class="mt-16 bg-slate-100 rounded-2xl p-8 text-center border border-slate-200">
+            <h3 class="serif text-2xl font-bold mb-4 text-slate-700">전도서의 결론</h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+                해 아래에서의 수고가 헛되다는 고백은 허무주의를 위함이 아닙니다.<br>
+                인간의 한계를 인정하고, 영원을 사모하며 오늘이라는 선물을 주신 하나님을 찬양하는 것,<br>
+                그것이 전도자가 우리에게 주는 진정한 지혜입니다.
+            </p>
+            <div class="inline-block bg-white px-6 py-3 rounded-xl shadow-sm border border-slate-200">
+                <p class="font-bold text-slate-800">전도서 12:13</p>
+                <p class="text-slate-500">"일의 결국을 다 들었으니 하나님을 경외하고 그의 명령들을 지킬지어다 이것이 모든 사람의 본분이니라"</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 text-center text-slate-400 text-sm">
+        <p>© 2024 전도서 지혜 요약 가이드</p>
+    </footer>
+
+    <script>
+        const summaries = [
+            { ch: 1, title: "해 아래 모든 것이 헛되다", desc: "지혜와 수고가 헛되며 만물이 피곤함을 고백함. 인간의 지식으로도 만족함을 얻을 수 없음을 강조.", key: "1:2" },
+            { ch: 2, title: "즐거움과 수고의 헛됨", desc: "쾌락, 사업, 부귀도 결국 바람을 잡는 것과 같음. 오직 하나님이 주신 몫을 즐거워하는 것이 복임을 말함.", key: "2:24" },
+            { ch: 3, title: "만사에는 때가 있다", desc: "날 때와 죽을 때 등 모든 일에는 하나님의 때가 있음. 영원을 사모하는 마음을 주신 하나님의 주권을 찬양.", key: "3:11" },
+            { ch: 4, title: "학대와 고독의 허무", desc: "혼자보다 둘이 나음(세 겹 줄). 시기와 경쟁 속에서의 수고보다 평안함이 더 가치 있음을 설명.", key: "4:12" },
+            { ch: 5, title: "하나님 앞에서의 태도", desc: "말을 적게 하고 서원을 지키라. 재물은 만족을 주지 못하며 오직 하나님의 선물로 누리는 것을 권함.", key: "5:2" },
+            { ch: 6, title: "채워지지 않는 갈증", desc: "부와 자녀가 많아도 심령이 낙을 누리지 못하면 불행함. 인간의 탐욕은 끝이 없음을 지적.", key: "6:3" },
+            { ch: 7, title: "지혜로운 자의 삶", desc: "초상집에 가는 것이 잔칫집보다 나음. 형통한 날에는 기뻐하고 곤고한 날에는 되돌아보라는 조언.", key: "7:14" },
+            { ch: 8, title: "왕의 권위와 악인의 형통", desc: "권위에 복종하되 하나님의 심판을 기억하라. 세상의 부조리 속에서도 하나님을 경외하는 자가 잘됨.", key: "8:12" },
+            { ch: 9, title: "모든 사람의 같은 운명", desc: "의인이나 악인이나 모두 죽음을 맞이함. 살아있는 동안 네게 주신 삶을 최선을 다해 기쁘게 살 것을 권함.", key: "9:7" },
+            { ch: 10, title: "우매함과 지혜의 대조", desc: "작은 파리가 향기로운 기름을 악취 나게 함. 말조심과 신중한 행동의 중요성을 강조.", key: "10:1" },
+            { ch: 11, title: "불확실한 미래와 투자", desc: "네 떡을 물 위에 던지라. 내일 일을 알 수 없으니 부지런히 일하고 젊은 시절을 창조주 안에서 즐거워하라.", key: "11:1" },
+            { ch: 12, title: "창조주를 기억하라", desc: "노년이 오기 전, 쇠약해지기 전에 하나님을 기억하라. 인간의 본분은 오직 하나님을 경외하는 것.", key: "12:1" }
+        ];
+
+        const verses = [
+            { text: "헛되고 헛되며 헛되고 헛되니 모든 것이 헛되도다", ref: "1:2" },
+            { text: "범사에 기한이 있고 천하 만사가 다 때가 있나니", ref: "3:1" },
+            { text: "하나님이 모든 것을 지으시되 때를 따라 아름답게 하셨고", ref: "3:11" },
+            { text: "두 사람이 한 사람보다 나음은 그들이 수고함으로 좋은 상을 얻을 것임이라", ref: "4:9" },
+            { text: "너는 하나님 앞에서 함부로 입을 열지 말며 급한 마음으로 말을 내지 말라", ref: "5:2" },
+            { text: "형통한 날에는 기뻐하고 곤고한 날에는 되돌아 보아라", ref: "7:14" },
+            { text: "너는 청년의 때에 너의 창조주를 기억하라", ref: "12:1" },
+            { text: "일의 결국을 다 들었으니 하나님을 경외하고 그의 명령들을 지킬지어다", ref: "12:13" }
+        ];
+
+        function renderSummaries() {
+            const container = document.getElementById('summary-container');
+            container.innerHTML = summaries.map(item => `
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-slate-100 summary-card">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-slate-800 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3">${item.ch}</span>
+                        <h3 class="font-bold text-lg text-slate-800">${item.title}</h3>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">${item.desc}</p>
+                    <div class="text-xs font-semibold text-amber-600 bg-amber-50 inline-block px-2 py-1 rounded">
+                        <i class="fas fa-bookmark mr-1"></i> 핵심구절: ${item.key}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function refreshVerse() {
+            const randomIndex = Math.floor(Math.random() * verses.length);
+            const verse = verses[randomIndex];
+            
+            const textEl = document.getElementById('random-verse');
+            const refEl = document.getElementById('random-ref');
+            
+            textEl.style.opacity = 0;
+            setTimeout(() => {
+                textEl.innerText = `"${verse.text}"`;
+                refEl.innerText = `- 전도서 ${verse.ref}`;
+                textEl.style.opacity = 1;
+            }, 300);
+        }
+
+        // Initialize
+        window.onload = () => {
+            renderSummaries();
+            refreshVerse();
+        };
+    </script>
+</body>
+</html>
